@@ -1,6 +1,5 @@
 var bow , arrow,  background;
 var bowImage, arrowImage, green_balloonImage, red_balloonImage, pink_balloonImage ,blue_balloonImage, backgroundImage;
-var balloon;
 
 function preload(){
   
@@ -8,10 +7,11 @@ function preload(){
   arrowImage = loadImage("arrow0.png");
   bowImage = loadImage("bow0.png");
   red_balloonImage = loadImage("red_balloon0.png");
+  blue_balloonImage = loadImage("blue_balloon0.png");
   green_balloonImage = loadImage("green_balloon0.png");
-  green_balloonImage = loadImage("blue_balloon0.png");
-  green_balloonImage = loadImage("pink_balloon0.png");
-   
+  pink_balloonImage = loadImage("pink_balloon0.png");
+
+
 }
 
 
@@ -28,17 +28,7 @@ function setup() {
   bow = createSprite(380,220,20,50);
   bow.addImage(bowImage); 
   bow.scale = 1;
-  red_balloonImage = createSprite(200,200,10,10);
-  red_balloonImage.visible= false;
-  green_balloonImage = createSprite(200,200,10,10);
-  green_balloonImage.visible= false;
-  blue_balloonImage = createSprite(200,200,10,10);
-  blue_balloonImage.visible= false;
-  pink_balloonImage = createSprite(200,200,10,10);
- pink_balloonImage.visible= false;
-  balloon = createSprite(200,200,10,10);
- balloon.visible= false;
-
+  
 }
 
 function draw() {
@@ -60,21 +50,21 @@ function draw() {
   }
   
   //mude o valor do balão aleatório para 4
-  var select_balloon = Math.round(random(1,1));
+  var select_balloon = Math.round(random(1,4));
   
   if (World.frameCount % 100 == 0) {
    switch(select_balloon){
-    case 1: balloon.addImage(red_balloonImage);
+    case 1: redBalloon();
     break;
-    case 2:balloon.addImage(pink_balloonImage);
+    case 2: greenBalloon();
     break;
-    case 3:balloon.addImage(blue_balloonImage);
+    case 3: blueBalloon();
     break;
-    case 4:balloon.addImage(green_balloonImage);
+    case 4: pinkBalloon();
 break;
+    default: break;
 
-  }
-}
+  }}
   
   drawSprites();
 }
@@ -86,7 +76,7 @@ break;
   arrow.addImage(arrowImage);
   arrow.x = 360;
   arrow.y=bow.y;
-  arrow.velocityX = -7;
+  arrow.velocityX = -4;
   arrow.lifetime = 100;
   arrow.scale = 0.3;
 }
@@ -102,23 +92,30 @@ function redBalloon() {
 }
 
 function blueBalloon() {
-  var blue = createSprite(0,Math.round(random(20, 370)), 10, 10);
+
+  var blue = createSprite(0,Math.round(random(40,400)), 10 , 10);
   blue.addImage(blue_balloonImage);
   blue.velocityX = 3;
   blue.lifetime = 150;
-  blue.scale = 0.1;}
+  blue.scale = 0.1;
+}
 
-function greenBalloon() {                                                                                                                                                              
-  var green = createSprite(0,Math.round(random(20, 370)), 10, 10);
+function greenBalloon() {
+  
+  var green = createSprite(0,Math.round(random(34,380)), 10 , 10);
   green.addImage(green_balloonImage);
   green.velocityX = 3;
   green.lifetime = 150;
-  green.scale = 0.1;}
+  green.scale = 0.1;
+}
 
 
 function pinkBalloon() {
-  var pink = createSprite(0,Math.round(random(20, 370)), 10, 10);
+
+  var pink = createSprite(0,Math.round(random(40,400)), 10 , 10);
   pink.addImage(pink_balloonImage);
   pink.velocityX = 3;
   pink.lifetime = 150;
-  pink.scale = 0.1;}
+  pink.scale = 1.2;
+
+}
